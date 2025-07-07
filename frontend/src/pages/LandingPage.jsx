@@ -1,45 +1,43 @@
-import React, { useContext, useState } from 'react'
-import { APP_FEATURES } from '../utils/data'
-import {LuSparkles } from 'react-icons/lu'
-import hero from '../assets/hero.png'
-import Modal from '../components/Modal'
-import LogIn from './Auth/LogIn'
-import SignUp from './Auth/SignUp'
-import { useNavigate } from 'react-router-dom'
-import { UserContext } from '../contexts/UserContext'
-import ProfileInfoCard from '../components/Cards/ProfileInfoCard'
+import React, { useContext, useState } from 'react';
+import { APP_FEATURES } from '../utils/data';
+import { LuSparkles } from 'react-icons/lu';
+import hero from '../assets/hero.png';
+import Modal from '../components/Modal';
+import LogIn from './Auth/LogIn';
+import SignUp from './Auth/SignUp';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
+import ProfileInfoCard from '../components/Cards/ProfileInfoCard';
 
 const LandingPage = () => {
-  const {user} = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [currentPage, setCurrentPage] = useState("login");
-  
+
   const handleCTA = () => {
-    if(!user){
+    if (!user) {
       setOpenAuthModal(true);
     } else {
       navigate('/dashboard');
     }
-  }
+  };
 
   return (
     <>
-      <div className='w-full min-h-screen bg-[#FFFCEF] overflow-x-hidden'>
+      <div className='w-full min-h-screen bg-[#FFFCEF] overflow-x-hidden relative'>
         {/* Background blob */}
-        <div className="w-full h-full max-w-[500px] max-h-[500px] bg-amber-200/20 blur-[65px] absolute top-0 left-0"></div>
-        
+        <div className="w-full h-full max-w-[500px] max-h-[500px] bg-amber-200/20 blur-[65px] absolute top-0 left-0" />
+
         <div className="container mx-auto px-4 sm:px-6 pt-6 pb-12 md:pb-16 relative z-10">
           {/* Header */}
           <header className="flex items-center justify-between mb-8 md:mb-12">
-            <div className="text-lg sm:text-xl text-black font-bold">
-              Interview-Prep
-            </div>
+            <div className="text-lg sm:text-xl text-black font-bold">Interview-Prep</div>
             {user ? (
               <ProfileInfoCard />
             ) : (
-              <button 
-                className="bg-linear-to-r from-[#FF9324] to-[#e99a4b] text-xs sm:text-sm font-semibold text-white px-4 sm:px-7 py-2 sm:py-2.5 rounded-full hover:bg-black hover:text-white border border-white transition-colors cursor-pointer" 
+              <button
+                className="bg-gradient-to-r from-[#FF9324] to-[#e99a4b] text-xs sm:text-sm font-semibold text-white px-4 sm:px-7 py-2 sm:py-2.5 rounded-full hover:bg-black hover:text-white border border-white transition-colors cursor-pointer"
                 onClick={() => setOpenAuthModal(true)}
               >
                 Login/Signup
@@ -48,9 +46,10 @@ const LandingPage = () => {
           </header>
 
           {/* Hero Section */}
-          <div className="flex flex-col md:flex-row items-center mb-8 md:mb-12">
-            <div className="w-full md:w-1/2 md:pr-4 mb-6 md:mb-0">
-              <div className="flex items-center justify-center md:justify-left mb-2">
+          <div className="flex flex-col-reverse md:flex-row items-center mb-6 md:mb-12 gap-6">
+            {/* Left Text Block */}
+            <div className="w-full md:w-1/2 md:pr-4">
+              <div className="flex items-center justify-center md:justify-start mb-2">
                 <div className="flex items-center gap-2 text-xs sm:text-[13px] text-amber-600 font-semibold bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
                   <LuSparkles size={14} /> Ai Powered
                 </div>
@@ -62,51 +61,44 @@ const LandingPage = () => {
                 </span>{" "}
                 Learning
               </h1>
-            </div>
-            
-            <div className="w-full md:w-1/2">
               <p className="text-sm sm:text-[15px] md:text-[17px] text-gray-900 mb-4 md:mb-6 text-center md:text-left">
-                Get interview questions and model answers based on your role, experience, and specific focus areas — no filler, just what matters. 
+                Get interview questions and model answers based on your role, experience, and specific focus areas — no filler, just what matters.
               </p>
               <div className="flex justify-center md:justify-start">
-                <button 
-                  className="bg-black text-xs sm:text-sm font-semibold text-white px-5 sm:px-7 py-2 sm:py-2.5 rounded-full hover:bg-yellow-100 hover:text-black border border-yellow-50 hover:border-yellow-300 transition-colors cursor-pointer" 
+                <button
+                  className="bg-black text-xs sm:text-sm font-semibold text-white px-5 sm:px-7 py-2 sm:py-2.5 rounded-full hover:bg-yellow-100 hover:text-black border border-yellow-50 hover:border-yellow-300 transition-colors cursor-pointer"
                   onClick={handleCTA}
                 >
                   Get Started
                 </button>
               </div>
             </div>
+
+            {/* Right Image Block */}
+            <div className="w-full md:w-1/2">
+              <img
+                src={hero}
+                alt="Interview preparation illustration"
+                className='w-full max-w-[90vw] md:max-w-full rounded-lg shadow-md mx-auto md:mx-0'
+              />
+            </div>
           </div>
         </div>
       </div>
-      
-      {/* Hero Image Section - Reduced gap here */}
-      <div className="w-full relative z-10 bg-[#FFFCEF] -mt-4">
-        <div className="container mx-auto px-4">
-          <section className='flex items-center justify-center'>
-            <img 
-              src={hero} 
-              alt="Interview preparation illustration" 
-              className='w-full max-w-[90vw] md:w-[80vw] rounded-lg shadow-md' 
-            />
-          </section>
-        </div>
-      </div>
 
-      {/* Rest of your content remains the same */}
+      {/* Features Section */}
       <div className="w-full min-h-full bg-[#FFFCEF] mt-10 md:mt-16">
         <div className="container mx-auto px-4 pt-6 pb-12 md:pb-20">
           <section className='mt-5 md:mt-8'>
             <h2 className="text-xl sm:text-2xl font-medium text-center mb-8 md:mb-12">
               Features of Interview Prep AI
             </h2>
-            
+
             <div className="flex flex-col items-center gap-6 md:gap-8">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full">
-                {APP_FEATURES.slice(0,3).map((feature) => (
-                  <div 
-                    className="bg-[#FFFEF8] p-4 sm:p-6 rounded-xl shadow-xs hover:shadow-lg shadow-amber-100 transition border border-amber-100" 
+                {APP_FEATURES.slice(0, 3).map((feature) => (
+                  <div
+                    className="bg-[#FFFEF8] p-4 sm:p-6 rounded-xl shadow-xs hover:shadow-lg shadow-amber-100 transition border border-amber-100"
                     key={feature.id}
                   >
                     <h3 className='text-sm sm:text-base font-semibold mb-2 sm:mb-3'>
@@ -119,8 +111,8 @@ const LandingPage = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 w-full">
                 {APP_FEATURES.slice(3).map((feature) => (
-                  <div 
-                    className="bg-[#FFFEF8] p-4 sm:p-6 rounded-xl shadow-xs hover:shadow-lg shadow-amber-100 transition border border-amber-100" 
+                  <div
+                    className="bg-[#FFFEF8] p-4 sm:p-6 rounded-xl shadow-xs hover:shadow-lg shadow-amber-100 transition border border-amber-100"
                     key={feature.id}
                   >
                     <h3 className='text-sm sm:text-base font-semibold mb-2 sm:mb-3'>
@@ -135,6 +127,7 @@ const LandingPage = () => {
         </div>
       </div>
 
+      {/* Footer */}
       <div className="text-xs sm:text-sm bg-gray-50 text-secondary text-center p-4 sm:p-5">
         <a
           href="https://mohd-fazal-ali.onrender.com/"
@@ -142,17 +135,18 @@ const LandingPage = () => {
           rel="noopener noreferrer"
           className="text-amber-600 underline hover:text-amber-800 transition"
         >
-          Mohd Fazal Ali 
+          Mohd Fazal Ali
         </a>
         &nbsp;© All Rights Reserved
       </div>
 
-      <Modal 
-        isOpen={openAuthModal} 
+      {/* Auth Modal */}
+      <Modal
+        isOpen={openAuthModal}
         onClose={() => {
           setOpenAuthModal(false);
           setCurrentPage("login");
-        }} 
+        }}
         hideHeader
       >
         <div>
@@ -161,7 +155,7 @@ const LandingPage = () => {
         </div>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default LandingPage
+export default LandingPage;
