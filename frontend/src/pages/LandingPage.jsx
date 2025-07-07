@@ -29,9 +29,9 @@ const LandingPage = () => {
         {/* Background blob */}
         <div className="w-full h-full max-w-[500px] max-h-[500px] bg-amber-200/20 blur-[65px] absolute top-0 left-0"></div>
         
-        <div className="container mx-auto px-4 sm:px-6 pt-6 pb-[100px] md:pb-[200px] relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 pt-6 pb-12 md:pb-16 relative z-10">
           {/* Header */}
-          <header className="flex items-center justify-between mb-8 md:mb-16">
+          <header className="flex items-center justify-between mb-8 md:mb-12">
             <div className="text-lg sm:text-xl text-black font-bold">
               Interview-Prep
             </div>
@@ -48,8 +48,8 @@ const LandingPage = () => {
           </header>
 
           {/* Hero Section */}
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="w-full md:w-1/2 md:pr-4 mb-8 md:mb-0">
+          <div className="flex flex-col md:flex-row items-center mb-8 md:mb-12">
+            <div className="w-full md:w-1/2 md:pr-4 mb-6 md:mb-0">
               <div className="flex items-center justify-center md:justify-left mb-2">
                 <div className="flex items-center gap-2 text-xs sm:text-[13px] text-amber-600 font-semibold bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
                   <LuSparkles size={14} /> Ai Powered
@@ -81,76 +81,72 @@ const LandingPage = () => {
         </div>
       </div>
       
-      <div className="w-full min-h-full relative z-10 bg-[#FFFCEF]">
-        {/* Hero Image */}
+      {/* Hero Image Section - Reduced gap here */}
+      <div className="w-full relative z-10 bg-[#FFFCEF] -mt-4">
         <div className="container mx-auto px-4">
-          <section className='flex items-center justify-center -mt-20 sm:-mt-28 md:-mt-36'>
+          <section className='flex items-center justify-center'>
             <img 
               src={hero} 
               alt="Interview preparation illustration" 
-              className='w-full max-w-[90vw] md:w-[80vw] rounded-lg' 
+              className='w-full max-w-[90vw] md:w-[80vw] rounded-lg shadow-md' 
             />
           </section>
         </div>
+      </div>
 
-        {/* Features Section */}
-        <div className="w-full min-h-full bg-[#FFFCEF] mt-10 md:mt-20">
-          <div className="container mx-auto px-4 pt-6 pb-12 md:pb-20">
-            <section className='mt-5 md:mt-10'>
-              <h2 className="text-xl sm:text-2xl font-medium text-center mb-8 md:mb-12">
-                Features of Interview Prep AI
-              </h2>
-              
-              <div className="flex flex-col items-center gap-6 md:gap-8">
-                {/* First row - 3 features on desktop, 1 on mobile */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full">
-                  {APP_FEATURES.slice(0,3).map((feature) => (
-                    <div 
-                      className="bg-[#FFFEF8] p-4 sm:p-6 rounded-xl shadow-xs hover:shadow-lg shadow-amber-100 transition border border-amber-100" 
-                      key={feature.id}
-                    >
-                      <h3 className='text-sm sm:text-base font-semibold mb-2 sm:mb-3'>
-                        {feature.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-gray-600">{feature.description}</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Second row - 2 features on desktop, 1 on mobile */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 w-full">
-                  {APP_FEATURES.slice(3).map((feature) => (
-                    <div 
-                      className="bg-[#FFFEF8] p-4 sm:p-6 rounded-xl shadow-xs hover:shadow-lg shadow-amber-100 transition border border-amber-100" 
-                      key={feature.id}
-                    >
-                      <h3 className='text-sm sm:text-base font-semibold mb-2 sm:mb-3'>
-                        {feature.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-gray-600">{feature.description}</p>
-                    </div>
-                  ))}
-                </div>
+      {/* Rest of your content remains the same */}
+      <div className="w-full min-h-full bg-[#FFFCEF] mt-10 md:mt-16">
+        <div className="container mx-auto px-4 pt-6 pb-12 md:pb-20">
+          <section className='mt-5 md:mt-8'>
+            <h2 className="text-xl sm:text-2xl font-medium text-center mb-8 md:mb-12">
+              Features of Interview Prep AI
+            </h2>
+            
+            <div className="flex flex-col items-center gap-6 md:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full">
+                {APP_FEATURES.slice(0,3).map((feature) => (
+                  <div 
+                    className="bg-[#FFFEF8] p-4 sm:p-6 rounded-xl shadow-xs hover:shadow-lg shadow-amber-100 transition border border-amber-100" 
+                    key={feature.id}
+                  >
+                    <h3 className='text-sm sm:text-base font-semibold mb-2 sm:mb-3'>
+                      {feature.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600">{feature.description}</p>
+                  </div>
+                ))}
               </div>
-            </section>
-          </div>
-        </div>
 
-        {/* Footer */}
-        <div className="text-xs sm:text-sm bg-gray-50 text-secondary text-center p-4 sm:p-5 mt-5">
-          <a
-            href="https://mohd-fazal-ali.onrender.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-amber-600 underline hover:text-amber-800 transition"
-          >
-            Mohd Fazal Ali 
-          </a>
-          &nbsp;© All Rights Reserved
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 w-full">
+                {APP_FEATURES.slice(3).map((feature) => (
+                  <div 
+                    className="bg-[#FFFEF8] p-4 sm:p-6 rounded-xl shadow-xs hover:shadow-lg shadow-amber-100 transition border border-amber-100" 
+                    key={feature.id}
+                  >
+                    <h3 className='text-sm sm:text-base font-semibold mb-2 sm:mb-3'>
+                      {feature.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600">{feature.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
         </div>
       </div>
 
-      {/* Auth Modal */}
+      <div className="text-xs sm:text-sm bg-gray-50 text-secondary text-center p-4 sm:p-5">
+        <a
+          href="https://mohd-fazal-ali.onrender.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-amber-600 underline hover:text-amber-800 transition"
+        >
+          Mohd Fazal Ali 
+        </a>
+        &nbsp;© All Rights Reserved
+      </div>
+
       <Modal 
         isOpen={openAuthModal} 
         onClose={() => {
