@@ -3,39 +3,56 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const connectDB = require("./config/db");
+
 const authRoutes = require("./routes/authRoutes");
 const sessionRoutes = require("./routes/sessionRoutes");
 const questionRoutes = require("./routes/questionRoutes");
-const { generateInterviewQuestions, generateConceptExplanation } = require("./controllers/aiController");
+
+const {
+  generateInterviewQuestions,
+  generateConceptExplanation,
+} = require("./controllers/aiController");
+
 const { protect } = require("./middlewares/authMiddleware");
 
 const app = express();
 
-app.use(express.json())
+// ---------------- CORS Configuration ----------------
+const allowedOrigins = ["https://interview-prep-dxrh.onrender.com"];
+
 app.use(cors({
-  origin: "https://interview-prep-dxrh.onrender.com",
-  credentials: true
-}))
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
+
+// Handle preflight (OPTIONS) requests
+app.options("*", cors());
+// -----------------------------------------------------
+
+// Connect to MongoDB
 connectDB();
 
+// JSON parser
 app.use(express.json());
 
-
-// Routes
+// Public Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/questions", questionRoutes);
 
-// // AI routes with auth protection middleware
+// Protected AI Routes
 app.use("/api/ai/generate-questions", protect, generateInterviewQuestions);
 app.use("/api/ai/generate-explanation", protect, generateConceptExplanation);
 
 
-
-app.use("/uploads", express.static(path.join(__dirname, "uploads"),{}));
-
+// Start Server
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, () => {
-  console.log(`Server Running on ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
