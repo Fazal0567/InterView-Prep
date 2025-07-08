@@ -87,7 +87,7 @@ const LandingPage = () => {
       </div>
 
       {/* Features Section */}
-      <section className="w-full bg-[#FFFCEF] py-12 md:py-20">
+      <section className="w-full bg-[#FFFCEF] py-10 md:py-18">
         <div className="container mx-auto px-4 sm:px-6">
           <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-semibold mb-10">
             Features of Interview Prep AI
