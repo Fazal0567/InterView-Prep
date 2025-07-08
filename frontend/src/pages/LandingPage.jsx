@@ -29,7 +29,7 @@ const LandingPage = () => {
         {/* Background Effect */}
         <div className="w-full h-full max-w-[500px] max-h-[500px] bg-amber-200/20 blur-[65px] absolute top-0 left-0" />
 
-        <div className="container mx-auto px-4 sm:px-6 pt-6 pb-12 md:pb-16 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 pt-6 pb-6 md:pb-12 relative z-10">
           {/* Header */}
           <header className="flex items-center justify-between mb-8 md:mb-12">
             <div className="text-lg sm:text-xl font-bold text-black">Interview-Prep</div>
@@ -46,7 +46,7 @@ const LandingPage = () => {
           </header>
 
           {/* Hero Section */}
-          <section className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12 mb-12">
+          <section className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12 mb-6 md:mb-12">
             {/* Text Block */}
             <div className="w-full md:w-1/2 text-center md:text-left">
               <div className="flex justify-center md:justify-start mb-3">
@@ -87,7 +87,7 @@ const LandingPage = () => {
       </div>
 
       {/* Features Section */}
-      <section className="w-full bg-[#FFFCEF] py-10 md:py-18">
+      <section className="w-full bg-[#FFFCEF] pt-6 md:pt-12 pb-10 md:pb-18">
         <div className="container mx-auto px-4 sm:px-6">
           <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-semibold mb-10">
             Features of Interview Prep AI
