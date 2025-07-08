@@ -32,11 +32,11 @@ app.use("/api/ai/generate-questions", protect, generateInterviewQuestions);
 app.use("/api/ai/generate-explanation", protect, generateConceptExplanation);
 
 // 📦 Serve React Vite Frontend
-app.use(express.static(path.join(__dirname, "../client/dist")));
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 // 🧭 Catch-all to support client-side routing (like /dashboard, /profile)
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
 // 🚀 Start Server
