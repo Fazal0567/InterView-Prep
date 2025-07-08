@@ -9,20 +9,27 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
 import ProfileInfoCard from '../components/Cards/ProfileInfoCard';
 
-// Dark mode toggle inside this file (for simplicity)
+// ✅ Dark Mode Toggle (built-in)
 const DarkModeToggle = () => {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      document.documentElement.classList.add('dark');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const root = document.documentElement;
+
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      root.classList.add('dark');
       setIsDark(true);
+    } else {
+      root.classList.remove('dark');
+      setIsDark(false);
     }
   }, []);
 
   const toggleTheme = () => {
     const root = document.documentElement;
+
     if (root.classList.contains('dark')) {
       root.classList.remove('dark');
       localStorage.setItem('theme', 'light');
@@ -37,7 +44,7 @@ const DarkModeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="text-xs sm:text-sm px-3 py-1 rounded-full border bg-gray-200 dark:bg-gray-700 text-black dark:text-white transition hover:scale-105"
+      className="text-xs sm:text-sm px-3 py-1 rounded-full border border-gray-300 bg-gray-100 dark:bg-gray-700 text-black dark:text-white transition hover:scale-105"
     >
       {isDark ? '🌙 Dark' : '☀️ Light'}
     </button>
@@ -60,14 +67,14 @@ const LandingPage = () => {
 
   return (
     <>
-      <div className="w-full min-h-screen bg-[#FFFCEF] dark:bg-[#1a1a1a] overflow-x-hidden relative transition-colors duration-300">
+      <div className="w-full min-h-screen bg-[#FFFCEF] dark:bg-[#1a1a1a] text-black dark:text-white overflow-x-hidden relative transition-colors duration-300">
         {/* Background blob */}
         <div className="w-full h-full max-w-[500px] max-h-[500px] bg-amber-200/20 blur-[65px] absolute top-0 left-0" />
 
         <div className="container mx-auto px-4 sm:px-6 pt-6 pb-12 md:pb-16 relative z-10">
           {/* Header */}
           <header className="flex items-center justify-between mb-8 md:mb-12">
-            <div className="text-lg sm:text-xl font-bold text-black dark:text-white">Interview-Prep</div>
+            <div className="text-lg sm:text-xl font-bold">Interview-Prep</div>
             <div className="flex items-center gap-4">
               <DarkModeToggle />
               {user ? (
@@ -92,7 +99,7 @@ const LandingPage = () => {
                   <LuSparkles size={16} /> AI Powered
                 </div>
               </div>
-              <h1 className="text-[clamp(1.9rem,5vw,3.2rem)] font-bold text-black dark:text-white leading-tight mb-4">
+              <h1 className="text-[clamp(1.9rem,5vw,3.2rem)] font-bold leading-tight mb-4">
                 Ace Interviews with <br />
                 <span className="text-transparent bg-clip-text bg-[radial-gradient(circle,_#FF9324_0%,_#FCD760_100%)] bg-[length:200%_200%] animate-text-shine">
                   AI Powered
@@ -127,7 +134,7 @@ const LandingPage = () => {
       {/* Features Section */}
       <section className="w-full bg-[#FFFCEF] dark:bg-[#121212] py-12 md:py-20 transition-colors duration-300">
         <div className="container mx-auto px-4 sm:px-6">
-          <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-semibold text-black dark:text-white mb-10">
+          <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-semibold mb-10">
             Features of Interview Prep AI
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
@@ -136,7 +143,7 @@ const LandingPage = () => {
                 key={feature.id}
                 className="bg-[#FFFEF8] dark:bg-[#1e1e1e] p-6 rounded-xl border border-amber-100 shadow hover:shadow-lg transition"
               >
-                <h3 className="text-base font-semibold text-black dark:text-white mb-2">{feature.title}</h3>
+                <h3 className="text-base font-semibold mb-2">{feature.title}</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-300">{feature.description}</p>
               </div>
             ))}
@@ -147,7 +154,7 @@ const LandingPage = () => {
                 key={feature.id}
                 className="bg-[#FFFEF8] dark:bg-[#1e1e1e] p-6 rounded-xl border border-amber-100 shadow hover:shadow-lg transition"
               >
-                <h3 className="text-base font-semibold text-black dark:text-white mb-2">{feature.title}</h3>
+                <h3 className="text-base font-semibold mb-2">{feature.title}</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-300">{feature.description}</p>
               </div>
             ))}
