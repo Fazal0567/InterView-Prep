@@ -14,6 +14,7 @@ const SignUp = ({ setCurrentPage }) => {
   const [fullName, setFullName] = useState('');
   const [profilePic, setProfilePic] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const { updateUser } = useContext(UserContext);
@@ -21,12 +22,12 @@ const SignUp = ({ setCurrentPage }) => {
   const handleSignUp = async (e) => {
     e.preventDefault();
 
-    // Validation
     if (!fullName) return setError('Please enter a full name');
     if (!validateEmail(email)) return setError('Please enter a valid email address');
     if (!password) return setError('Please enter a password');
 
     setError('');
+    setLoading(true);
 
     try {
       let profileImageUrl = '';
@@ -51,11 +52,13 @@ const SignUp = ({ setCurrentPage }) => {
         navigate('/dashboard');
       }
     } catch (error) {
-      if (error.response && error.response.data.message) {
+      if (error.response?.data?.message) {
         setError(error.response.data.message);
       } else {
         setError(error.message);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -97,8 +100,40 @@ const SignUp = ({ setCurrentPage }) => {
 
           {error && <p className="text-red-500 text-xs">{error}</p>}
 
-          <button type="submit" className="btn-primary w-full">
-            Sign Up
+          <button
+            type="submit"
+            disabled={loading}
+            className={`btn-primary w-full flex justify-center items-center gap-2 ${
+              loading ? 'opacity-70 cursor-not-allowed' : ''
+            }`}
+          >
+            {loading ? (
+              <>
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                  ></path>
+                </svg>
+                Signing Up...
+              </>
+            ) : (
+              'Sign Up'
+            )}
           </button>
 
           <p className="text-[13px] text-slate-800 text-center mt-3">
