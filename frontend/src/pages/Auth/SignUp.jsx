@@ -73,7 +73,7 @@ const SignUp = ({ setCurrentPage }) => {
           <Input
             label="Full Name"
             type="text"
-            placeholder="John Doe"
+            placeholder="Enter your name"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             required
@@ -81,7 +81,7 @@ const SignUp = ({ setCurrentPage }) => {
           <Input
             label="Email Address"
             type="email"
-            placeholder="user@gmail.com"
+            placeholder="Enter your Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
