@@ -31,7 +31,6 @@ const SignUp = ({ setCurrentPage }) => {
 
     try {
       let profileImageUrl = '';
-
       if (profilePic) {
         const imgUploadRes = await uploadImage(profilePic);
         profileImageUrl = imgUploadRes.imageUrl || '';
@@ -45,7 +44,6 @@ const SignUp = ({ setCurrentPage }) => {
       });
 
       const { token } = response.data;
-
       if (token) {
         localStorage.setItem('token', token);
         updateUser(response.data);
@@ -63,8 +61,8 @@ const SignUp = ({ setCurrentPage }) => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen px-4">
-      <div className="w-full max-w-md bg-white p-7 shadow-md rounded-lg">
+    <div className="min-h-screen w-full flex items-center justify-center px-4">
+      <div className="w-[90vw] md:w-[33vw] p-7 bg-white shadow-md rounded-lg">
         <h3 className="text-lg font-semibold text-black">Create an Account</h3>
         <p className="text-xs text-slate-700 mt-[5px] mb-6">
           Join us today by entering your details below
@@ -72,7 +70,6 @@ const SignUp = ({ setCurrentPage }) => {
 
         <form onSubmit={handleSignUp} className="space-y-4">
           <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
-
           <Input
             label="Full Name"
             type="text"
@@ -98,7 +95,7 @@ const SignUp = ({ setCurrentPage }) => {
             required
           />
 
-          {error && <p className="text-red-500 text-xs">{error}</p>}
+          {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
 
           <button
             type="submit"
@@ -122,12 +119,12 @@ const SignUp = ({ setCurrentPage }) => {
                     r="10"
                     stroke="currentColor"
                     strokeWidth="4"
-                  ></circle>
+                  />
                   <path
                     className="opacity-75"
                     fill="currentColor"
                     d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                  ></path>
+                  />
                 </svg>
                 Signing Up...
               </>
