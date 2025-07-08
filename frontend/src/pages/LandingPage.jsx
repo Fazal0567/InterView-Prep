@@ -25,48 +25,48 @@ const LandingPage = () => {
 
   return (
     <>
-      <div className='w-full min-h-screen bg-[#FFFCEF] overflow-x-hidden relative'>
-        {/* Background blob */}
+      <div className="w-full min-h-screen bg-[#FFFCEF] overflow-x-hidden relative">
+        {/* Background Effect */}
         <div className="w-full h-full max-w-[500px] max-h-[500px] bg-amber-200/20 blur-[65px] absolute top-0 left-0" />
 
         <div className="container mx-auto px-4 sm:px-6 pt-6 pb-12 md:pb-16 relative z-10">
           {/* Header */}
           <header className="flex items-center justify-between mb-8 md:mb-12">
-            <div className="text-lg sm:text-xl text-black font-bold">Interview-Prep</div>
+            <div className="text-lg sm:text-xl font-bold text-black">Interview-Prep</div>
             {user ? (
               <ProfileInfoCard />
             ) : (
               <button
-                className="bg-gradient-to-r from-[#FF9324] to-[#e99a4b] text-xs sm:text-sm font-semibold text-white px-4 sm:px-7 py-2 sm:py-2.5 rounded-full hover:bg-black hover:text-white border border-white transition-colors cursor-pointer"
+                className="bg-gradient-to-r from-[#FF9324] to-[#e99a4b] text-xs sm:text-sm font-semibold text-white px-4 sm:px-7 py-2 sm:py-2.5 rounded-full hover:bg-black hover:text-white border border-white transition-colors"
                 onClick={() => setOpenAuthModal(true)}
               >
-                Login/Signup
+                Login / Signup
               </button>
             )}
           </header>
 
           {/* Hero Section */}
-          <div className="flex flex-col-reverse md:flex-row items-center mb-6 md:mb-12 gap-6">
-            {/* Left Text Block */}
-            <div className="w-full md:w-1/2 md:pr-4">
-              <div className="flex items-center justify-center md:justify-start mb-2">
-                <div className="flex items-center gap-2 text-xs sm:text-[13px] text-amber-600 font-semibold bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
-                  <LuSparkles size={14} /> Ai Powered
+          <section className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12 mb-12">
+            {/* Text Block */}
+            <div className="w-full md:w-1/2 text-center md:text-left">
+              <div className="flex justify-center md:justify-start mb-3">
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-amber-600 font-semibold bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
+                  <LuSparkles size={16} /> AI Powered
                 </div>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl text-black font-medium mb-4 md:mb-6 leading-tight text-center md:text-left">
-                Ace Interview with <br />
-                <span className="text-transparent bg-clip-text bg-[radial-gradient(circle,_#FF9324_0%,_#FCD760_100%)] bg-[length:200%_200%] animate-text-shine font-semibold">
-                  Ai powered
+              <h1 className="text-[clamp(1.9rem,5vw,3.2rem)] font-bold text-black leading-tight mb-4">
+                Ace Interviews with <br />
+                <span className="text-transparent bg-clip-text bg-[radial-gradient(circle,_#FF9324_0%,_#FCD760_100%)] bg-[length:200%_200%] animate-text-shine">
+                  AI Powered
                 </span>{" "}
                 Learning
               </h1>
-              <p className="text-sm sm:text-[15px] md:text-[17px] text-gray-900 mb-4 md:mb-6 text-center md:text-left">
-                Get interview questions and model answers based on your role, experience, and specific focus areas — no filler, just what matters.
+              <p className="text-sm sm:text-base md:text-lg text-gray-800 mb-6">
+                Get interview questions and model answers tailored to your role, experience, and target company — smart, sharp, and focused.
               </p>
               <div className="flex justify-center md:justify-start">
                 <button
-                  className="bg-black text-xs sm:text-sm font-semibold text-white px-5 sm:px-7 py-2 sm:py-2.5 rounded-full hover:bg-yellow-100 hover:text-black border border-yellow-50 hover:border-yellow-300 transition-colors cursor-pointer"
+                  className="bg-black text-white text-sm sm:text-base font-semibold px-6 py-2.5 rounded-full transition hover:bg-yellow-100 hover:text-black hover:border-yellow-300 border border-transparent"
                   onClick={handleCTA}
                 >
                   Get Started
@@ -74,61 +74,51 @@ const LandingPage = () => {
               </div>
             </div>
 
-            {/* Right Image Block */}
-            <div className="w-full md:w-1/2">
+            {/* Image */}
+            <div className="w-full md:w-1/2 flex justify-center">
               <img
                 src={hero}
-                alt="Interview preparation illustration"
-                className='w-full max-w-[90vw] md:max-w-full rounded-lg shadow-md mx-auto md:mx-0'
+                alt="Interview prep illustration"
+                className="w-full max-w-[90vw] md:max-w-[100%] rounded-xl shadow-lg"
               />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Features Section */}
-      <div className="w-full min-h-full bg-[#FFFCEF] mt-10 md:mt-16">
-        <div className="container mx-auto px-4 pt-6 pb-12 md:pb-20">
-          <section className='mt-5 md:mt-8'>
-            <h2 className="text-xl sm:text-2xl font-medium text-center mb-8 md:mb-12">
-              Features of Interview Prep AI
-            </h2>
-
-            <div className="flex flex-col items-center gap-6 md:gap-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full">
-                {APP_FEATURES.slice(0, 3).map((feature) => (
-                  <div
-                    className="bg-[#FFFEF8] p-4 sm:p-6 rounded-xl shadow-xs hover:shadow-lg shadow-amber-100 transition border border-amber-100"
-                    key={feature.id}
-                  >
-                    <h3 className='text-sm sm:text-base font-semibold mb-2 sm:mb-3'>
-                      {feature.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-gray-600">{feature.description}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 w-full">
-                {APP_FEATURES.slice(3).map((feature) => (
-                  <div
-                    className="bg-[#FFFEF8] p-4 sm:p-6 rounded-xl shadow-xs hover:shadow-lg shadow-amber-100 transition border border-amber-100"
-                    key={feature.id}
-                  >
-                    <h3 className='text-sm sm:text-base font-semibold mb-2 sm:mb-3'>
-                      {feature.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-gray-600">{feature.description}</p>
-                  </div>
-                ))}
-              </div>
             </div>
           </section>
         </div>
       </div>
 
+      {/* Features Section */}
+      <section className="w-full bg-[#FFFCEF] py-12 md:py-20">
+        <div className="container mx-auto px-4 sm:px-6">
+          <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-semibold mb-10">
+            Features of Interview Prep AI
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            {APP_FEATURES.slice(0, 3).map((feature) => (
+              <div
+                key={feature.id}
+                className="bg-[#FFFEF8] p-6 rounded-xl border border-amber-100 shadow hover:shadow-lg transition"
+              >
+                <h3 className="text-base font-semibold mb-2">{feature.title}</h3>
+                <p className="text-sm text-gray-600">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {APP_FEATURES.slice(3).map((feature) => (
+              <div
+                key={feature.id}
+                className="bg-[#FFFEF8] p-6 rounded-xl border border-amber-100 shadow hover:shadow-lg transition"
+              >
+                <h3 className="text-base font-semibold mb-2">{feature.title}</h3>
+                <p className="text-sm text-gray-600">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
-      <div className="text-xs sm:text-sm bg-gray-50 text-secondary text-center p-4 sm:p-5">
+      <footer className="bg-gray-50 text-center text-xs sm:text-sm text-secondary py-4">
         <a
           href="https://mohd-fazal-ali.onrender.com/"
           target="_blank"
@@ -136,9 +126,9 @@ const LandingPage = () => {
           className="text-amber-600 underline hover:text-amber-800 transition"
         >
           Mohd Fazal Ali
-        </a>
-        &nbsp;© All Rights Reserved
-      </div>
+        </a>{" "}
+        © All Rights Reserved
+      </footer>
 
       {/* Auth Modal */}
       <Modal
@@ -149,10 +139,8 @@ const LandingPage = () => {
         }}
         hideHeader
       >
-        <div>
-          {currentPage === "login" && <LogIn setCurrentPage={setCurrentPage} />}
-          {currentPage === "signup" && <SignUp setCurrentPage={setCurrentPage} />}
-        </div>
+        {currentPage === "login" && <LogIn setCurrentPage={setCurrentPage} />}
+        {currentPage === "signup" && <SignUp setCurrentPage={setCurrentPage} />}
       </Modal>
     </>
   );
