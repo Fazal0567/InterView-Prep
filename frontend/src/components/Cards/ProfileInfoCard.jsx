@@ -11,10 +11,16 @@ const ProfileInfoCard = () => {
     navigate('/');
   };
 
+  // Enforce HTTPS on the image URL
+  const getSecureImageUrl = (url) => {
+    if (!url) return '/default-avatar.png';
+    return url.startsWith('http://') ? url.replace('http://', 'https://') : url;
+  };
+
   return user && (
     <div className='flex items-center'>
       <img
-        src={user.profileImageUrl || '/default-avatar.png'}
+        src={getSecureImageUrl(user.profileImageUrl)}
         alt="Profile"
         className='w-11 h-11 bg-gray-300 rounded-full mr-3 object-cover'
       />
