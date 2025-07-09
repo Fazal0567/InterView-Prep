@@ -37,6 +37,9 @@ app.use((req, res, next) => {
 });
 
 // ✅ API Routes
+app.get("/",(res,req)=>{
+  res.send("Backend is working ");
+});
 app.use("/api/auth", authRoutes);
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/questions", questionRoutes);
