@@ -1,5 +1,5 @@
 // BASE URL
-export const BASE_URL = 'https://inter-view-prep-zeta.vercel.app';
+export const BASE_URL = 'https://interviewprep-2v0j.onrender.com';
 
 // API ENDPOINT PATHS
 export const API_PATHS = {
