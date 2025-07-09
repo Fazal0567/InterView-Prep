@@ -15,43 +15,40 @@ const { protect } = require("./middlewares/authMiddleware");
 
 const app = express();
 
-// ✅ CORS Config
+// ✅ Connect to MongoDB
+connectDB();
+
+// ✅ Express JSON Parser
+app.use(express.json());
+
+// ✅ CORS Configuration (Production Only)
 const corsOptions = {
-  origin="https://interviewprep-alpha.vercel.app", // From .env
+  origin: "https://interviewprep-alpha.vercel.app", // production frontend domain
   credentials: true,
 };
 
-// ✅ Handle CORS & Preflight Globally (IMPORTANT!)
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // ⬅️ Preflight support
+app.options("*", cors(corsOptions)); // Enable preflight across the board
 
-
-// ✅ Middleware
-connectDB(); // MongoDB connection
-app.use(express.json()); // Parse JSON body
-
-// ✅ Logging origin (debugging)
+// ✅ Debug Request Origins (Optional – remove if not needed)
 app.use((req, res, next) => {
   console.log(`🔍 Origin: ${req.headers.origin} | Method: ${req.method}`);
   next();
 });
 
+// ✅ Public Static Files (e.g., uploaded assets)
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 // ✅ API Routes
-app.get("/",(res,req)=>{
-  res.send("Backend is working ");
-});
 app.use("/api/auth", authRoutes);
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/questions", questionRoutes);
 
-// ✅ AI Protected Routes
+// ✅ AI Routes (Protected)
 app.post("/api/ai/generate-questions", protect, generateInterviewQuestions);
 app.post("/api/ai/generate-explanation", protect, generateConceptExplanation);
 
-// ✅ Static File Serving
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
-// ✅ Basic Health Check (Ping)
+// ✅ Root Route (Health Check)
 app.get("/", (req, res) => {
   res.status(200).send("✅ Backend is live!");
 });
