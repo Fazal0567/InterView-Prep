@@ -15,34 +15,47 @@ const { protect } = require("./middlewares/authMiddleware");
 
 const app = express();
 
-// ✅ Allow only deployed frontend domain
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL,
-    credentials: true,
-  })
-);
-console.log("CORS allowed origin:", process.env.FRONTEND_URL);
+// ✅ CORS Config
+const corsOptions = {
+  origin: process.env.FRONTEND_URL, // From .env
+  credentials: true,
+};
 
+// ✅ Handle CORS & Preflight Globally (IMPORTANT!)
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // ⬅️ Preflight support
 
+console.log("🛡️ CORS allowed origin:", process.env.FRONTEND_URL);
 
-connectDB(); // ✅ Connect to MongoDB
-app.use(express.json()); // ✅ Parse JSON request bodies
+// ✅ Middleware
+connectDB(); // MongoDB connection
+app.use(express.json()); // Parse JSON body
 
-// ✅ Public API Routes
+// ✅ Logging origin (debugging)
+app.use((req, res, next) => {
+  console.log(`🔍 Origin: ${req.headers.origin} | Method: ${req.method}`);
+  next();
+});
+
+// ✅ API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/questions", questionRoutes);
 
-// ✅ AI Routes with auth protection
+// ✅ AI Protected Routes
 app.post("/api/ai/generate-questions", protect, generateInterviewQuestions);
 app.post("/api/ai/generate-explanation", protect, generateConceptExplanation);
 
-// ✅ Serve uploaded files statically
-app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // ✅ Fixed
+// ✅ Static File Serving
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// ✅ Start server
+// ✅ Basic Health Check (Ping)
+app.get("/", (req, res) => {
+  res.status(200).send("✅ Backend is live!");
+});
+
+// ✅ Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`✅ Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
