@@ -17,7 +17,7 @@ const app = express();
 
 // ✅ CORS Config
 const corsOptions = {
-  origin="https://interviewprep-alpha.vercel.app/", // From .env
+  origin="https://interviewprep-alpha.vercel.app", // From .env
   credentials: true,
 };
 
@@ -25,7 +25,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); // ⬅️ Preflight support
 
-console.log("🛡️ CORS allowed origin:", process.env.FRONTEND_URL);
 
 // ✅ Middleware
 connectDB(); // MongoDB connection
