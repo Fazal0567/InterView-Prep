@@ -22,6 +22,8 @@ app.use(
     credentials: true,
   })
 );
+console.log("CORS allowed origin:", process.env.FRONTEND_URL);
+
 
 
 connectDB(); // ✅ Connect to MongoDB
