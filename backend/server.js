@@ -23,7 +23,7 @@ app.use(express.json());
 
 // ✅ CORS Configuration (Production Only)
 const corsOptions = {
-  origin: "https://interviewprep-alpha.vercel.app", // production frontend domain
+  origin: "https://interviewprep-69yw.onrender.com", // production frontend domain
   credentials: true,
 };
 
