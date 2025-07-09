@@ -16,25 +16,12 @@ const { protect } = require("./middlewares/authMiddleware");
 const app = express();
 
 // ✅ Allow only deployed frontend domain
-const allowedOrigins = ["https://interview-prep-dxrh.onrender.com"];
-
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"],
+    origin: "https://interview-prep-dxrh.onrender.com",
+    credentials: true, // if using cookies or authentication headers
   })
 );
-
-// ✅ Handle preflight requests globally
-app.options("*", cors());
 
 connectDB(); // ✅ Connect to MongoDB
 app.use(express.json()); // ✅ Parse JSON request bodies
