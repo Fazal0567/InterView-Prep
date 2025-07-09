@@ -18,10 +18,11 @@ const app = express();
 // ✅ Allow only deployed frontend domain
 app.use(
   cors({
-    origin: "https://interview-prep-dxrh.onrender.com",
-    credentials: true, // if using cookies or authentication headers
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
   })
 );
+
 
 connectDB(); // ✅ Connect to MongoDB
 app.use(express.json()); // ✅ Parse JSON request bodies
