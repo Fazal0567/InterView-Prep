@@ -17,7 +17,7 @@ const app = express();
 
 // ✅ CORS Config
 const corsOptions = {
-  origin: process.env.FRONTEND_URL, // From .env
+  origin="https://interviewprep-alpha.vercel.app/", // From .env
   credentials: true,
 };
 
