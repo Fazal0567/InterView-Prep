@@ -58,7 +58,7 @@ const LogIn = ({ setCurrentPage }) => {
 				<Input
 					label='Email Address'
 					type='email'
-					placeholder='user@gmail.com'
+					placeholder='Enter your Email'
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 				/>
