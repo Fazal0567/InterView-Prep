@@ -25,9 +25,9 @@ const LandingPage = () => {
 
   return (
     <>
-      <div className="w-full min-h-screen bg-[#FFFCEF] overflow-x-hidden relative">
+      <div className="w-full min-h-screen bg-[#F8FAFF] overflow-x-hidden relative">
         {/* Background Effect */}
-        <div className="w-full h-full max-w-[500px] max-h-[500px] bg-amber-200/20 blur-[65px] absolute top-0 left-0" />
+        <div className="w-full h-full max-w-[500px] max-h-[500px] bg-blue-200/20 blur-[65px] absolute top-0 left-0" />
 
         <div className="container mx-auto px-4 sm:px-6 pt-6 pb-6 md:pb-12 relative z-10">
           {/* Header */}
@@ -37,7 +37,7 @@ const LandingPage = () => {
               <ProfileInfoCard />
             ) : (
               <button
-                className="bg-gradient-to-r from-[#FF9324] to-[#e99a4b] text-xs sm:text-sm font-semibold text-white px-4 sm:px-7 py-2 sm:py-2.5 rounded-full hover:bg-black hover:text-white border border-white transition-colors"
+                className="bg-gradient-to-r from-[#3B82F6] to-[#1D4ED8] text-xs sm:text-sm font-semibold text-white px-4 sm:px-7 py-2 sm:py-2.5 rounded-full hover:bg-black hover:text-white border border-white transition-colors"
                 onClick={() => setOpenAuthModal(true)}
               >
                 Login / Signup
@@ -50,13 +50,13 @@ const LandingPage = () => {
             {/* Text Block */}
             <div className="w-full md:w-1/2 text-center md:text-left">
               <div className="flex justify-center md:justify-start mb-3">
-                <div className="flex items-center gap-2 text-xs sm:text-sm text-amber-600 font-semibold bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-blue-600 font-semibold bg-blue-100 px-3 py-1 rounded-full border border-blue-300">
                   <LuSparkles size={16} /> AI Powered
                 </div>
               </div>
               <h1 className="text-[clamp(1.9rem,5vw,3.2rem)] font-bold text-black leading-tight mb-4">
                 Ace Interviews with <br />
-                <span className="text-transparent bg-clip-text bg-[radial-gradient(circle,_#FF9324_0%,_#FCD760_100%)] bg-[length:200%_200%] animate-text-shine">
+                <span className="text-transparent bg-clip-text bg-[radial-gradient(circle,_#3B82F6_0%,_#1E40AF_100%)] bg-[length:200%_200%] animate-text-shine">
                   AI Powered
                 </span>{" "}
                 Learning
@@ -66,7 +66,7 @@ const LandingPage = () => {
               </p>
               <div className="flex justify-center md:justify-start">
                 <button
-                  className="bg-black text-white text-sm sm:text-base font-semibold px-6 py-2.5 rounded-full transition hover:bg-yellow-100 hover:text-black hover:border-yellow-300 border border-transparent"
+                  className="bg-black text-white text-sm sm:text-base font-semibold px-6 py-2.5 rounded-full transition hover:bg-blue-100 hover:text-black hover:border-blue-300 border border-transparent"
                   onClick={handleCTA}
                 >
                   Get Started
@@ -87,7 +87,7 @@ const LandingPage = () => {
       </div>
 
       {/* Features Section */}
-      <section className="w-full bg-[#FFFCEF] pt-6 md:pt-12 pb-10 md:pb-18">
+      <section className="w-full bg-[#F8FAFF] pt-6 md:pt-12 pb-10 md:pb-18">
         <div className="container mx-auto px-4 sm:px-6">
           <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-semibold mb-10">
             Features of Interview Prep AI
@@ -96,7 +96,7 @@ const LandingPage = () => {
             {APP_FEATURES.slice(0, 3).map((feature) => (
               <div
                 key={feature.id}
-                className="bg-[#FFFEF8] p-6 rounded-xl border border-amber-100 shadow hover:shadow-lg transition"
+                className="bg-white p-6 rounded-xl border border-blue-100 shadow hover:shadow-lg transition"
               >
                 <h3 className="text-base font-semibold mb-2">{feature.title}</h3>
                 <p className="text-sm text-gray-600">{feature.description}</p>
@@ -107,7 +107,7 @@ const LandingPage = () => {
             {APP_FEATURES.slice(3).map((feature) => (
               <div
                 key={feature.id}
-                className="bg-[#FFFEF8] p-6 rounded-xl border border-amber-100 shadow hover:shadow-lg transition"
+                className="bg-white p-6 rounded-xl border border-blue-100 shadow hover:shadow-lg transition"
               >
                 <h3 className="text-base font-semibold mb-2">{feature.title}</h3>
                 <p className="text-sm text-gray-600">{feature.description}</p>
@@ -123,7 +123,7 @@ const LandingPage = () => {
           href="https://mohd-fazal-ali.onrender.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-amber-600 underline hover:text-amber-800 transition"
+          className="text-blue-600 underline hover:text-blue-800 transition"
         >
           Mohd Fazal Ali
         </a>{" "}
