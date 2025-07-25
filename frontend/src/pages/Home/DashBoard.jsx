@@ -67,8 +67,8 @@ useEffect(()=>{
 ))}
 
       </div>
-      <button className="h-12 md:h-12 flex items-center justify-center gap-3 bg-linear-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-black hover:text-white transition-colors cursor-pointer hover:shadow-2xl hover:shadow-orange-300 fixed bottom-10 md:bottom-20 right-10 md:right-20" onClick={()=>setOpenCreateModel(true)}>
-        <LuPlus className='text-2xl text-white' /> Add New
+      <button className="h-12 md:h-12 flex items-center justify-center gap-3 bg-linear-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-[#f5f5f5] px-7 py-2.5 rounded-full hover:bg-black hover:text-[#f5f5f5] transition-colors cursor-pointer hover:shadow-2xl hover:shadow-orange-300 fixed bottom-10 md:bottom-20 right-10 md:right-20" onClick={()=>setOpenCreateModel(true)}>
+        <LuPlus className='text-2xl text-[#f5f5f5]' /> Add New
       </button>
     </div>
     <Modal isOpen={openCreateModel} onClose={()=>{setOpenCreateModel(false);}} hideHeader>
