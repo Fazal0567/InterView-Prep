@@ -6,78 +6,126 @@
 }
 
 @theme{
-  --font-display:"Urbanist",sans-serif;
+  --font-display: "Urbanist", sans-serif;
   --breakpoint-3xl: 1920px;
-  --color-primary: #FF9324;
+  --color-primary: #FF6B35;  /* Changed to a more vibrant orange */
+  --color-secondary: #4ECDC4; /* Added a fresh teal */
+  --color-accent: #FFBE0B;    /* Added a bright yellow */
+  --color-dark: #1A1A2E;      /* Added a deep navy */
+  --color-light: #F8F7FF;     /* Added a soft lavender white */
 }
+
 @layer base {
   html {
-  font-family: var(--font-display) ;
+    font-family: var(--font-display);
   }
-body{
-  background-color:#fcfbfc;
-  overflow-x: hidden;
+  body {
+    background-color: var(--color-light);
+    overflow-x: hidden;
+    color: var(--color-dark);
+  }
 }
-}
+
 .custom-scrollbar::-webkit-scrollbar{
-  width: 4px;
+  width: 6px; /* Slightly thicker for better visibility */
 }
-  .custom-scrollbar::-webkit-scrollbar-thumb{
-  background-color: rgba( 100,100,100, 0.4);
+.custom-scrollbar::-webkit-scrollbar-thumb{
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-accent));
   border-radius: 10px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-track{
-    background: transparent;
-  }
+}
+.custom-scrollbar::-webkit-scrollbar-track{
+  background: rgba(0,0,0,0.05);
+}
 
-  @layer utilities{
-    @keyframes text-shine{
-      0% {
-        background-position: 0% 50%;
-      }
-      100% {
-        background-position: 100% 50%;
-      }
+@layer utilities{
+  @keyframes text-shine{
+    0% {
+      background-position: 0% 50%;
     }
-
-    .animate-text-shine{
-      animation: text-shine 3s ease-in-out infinite alternate;
+    100% {
+      background-position: 100% 50%;
     }
-
-    @keyframes blob1{
-      0%, 100%{
-        transform: translate(0px, 0px) scale(1);
-      }
-      33%{
-        transform: translate(30px, -60px) scale(1.1);
-      }
-      66%{
-        transform: translate(-20px, 20px) scale(0.9);
-      }
-    }
-    .animate-blob1{
-      animation: blob1 8s ease-in-out infinite;
-    }
-
-    .animate-blob2{
-      animation: blob2 10s ease-in-out infinite;
-    }
-
-    .animate-blob3{
-      animation: blob3 12s ease-in-out infinite;
-    }
-
   }
 
-  .input-box{
-    @apply w-full flex justify-between gap-3 text-black bg-gray-50/50 rounded px-4 py-3 mb-4 mt-3 border border-gray-100 outline-none focus-within:border-orange-300
+  .animate-text-shine{
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-secondary), var(--color-primary));
+    background-size: 300% 300%;
+    animation: text-shine 3s ease-in-out infinite alternate;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
-  .btn-primary {
-    @apply w-full flex items-center justify-center gap-3 text-sm font-medium text-white bg-black shadow-lg shadow-orange-600/5 p-[10px] rounded-md my-1 hover:bg-orange-600/15 hover:text-black cursor-pointer;
+  @keyframes blob1{
+    0%, 100%{
+      transform: translate(0px, 0px) scale(1);
+    }
+    33%{
+      transform: translate(30px, -60px) scale(1.1);
+    }
+    66%{
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+  }
+  
+  @keyframes blob2{
+    0%, 100%{
+      transform: translate(0px, 0px) scale(1);
+    }
+    33%{
+      transform: translate(20px, 40px) scale(1.05);
+    }
+    66%{
+      transform: translate(-30px, -20px) scale(0.95);
+    }
+  }
+  
+  @keyframes blob3{
+    0%, 100%{
+      transform: translate(0px, 0px) scale(1);
+    }
+    33%{
+      transform: translate(-40px, 30px) scale(1.07);
+    }
+    66%{
+      transform: translate(10px, -30px) scale(0.93);
+    }
   }
 
-  .btn-small {
-    @apply flex items-center justify-center gap-3 bg-linear-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2 rounded-lg hover:bg-black hover:text-white transition-colors cursor-pointer hover:shadow-2xl hover:shadow-orange-300 
+  .animate-blob1{
+    animation: blob1 8s ease-in-out infinite;
+    background: radial-gradient(circle, var(--color-primary) 0%, rgba(255,107,53,0.3) 70%);
   }
 
+  .animate-blob2{
+    animation: blob2 10s ease-in-out infinite;
+    background: radial-gradient(circle, var(--color-secondary) 0%, rgba(78,205,196,0.3) 70%);
+  }
+
+  .animate-blob3{
+    animation: blob3 12s ease-in-out infinite;
+    background: radial-gradient(circle, var(--color-accent) 0%, rgba(255,190,11,0.3) 70%);
+  }
+}
+
+.input-box{
+  @apply w-full flex justify-between gap-3 text-black bg-white rounded-lg px-4 py-3 mb-4 mt-3 border border-gray-200 outline-none focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/30 transition-all;
+}
+
+.btn-primary {
+  @apply w-full flex items-center justify-center gap-3 text-sm font-medium text-white bg-gradient-to-r from-primary to-accent shadow-lg shadow-primary/30 p-[10px] rounded-lg my-1 hover:shadow-xl hover:shadow-primary/40 hover:brightness-110 transition-all cursor-pointer;
+}
+
+.btn-small {
+  @apply flex items-center justify-center gap-3 bg-gradient-to-r from-primary to-accent text-sm font-semibold text-white px-7 py-2.5 rounded-lg hover:bg-gradient-to-r hover:from-dark hover:to-dark transition-all cursor-pointer hover:shadow-xl hover:shadow-primary/30 transform hover:-translate-y-0.5;
+}
+
+/* Additional attractive elements */
+.glass-effect {
+  @apply backdrop-blur-md bg-white/30 border border-white/20 shadow-lg;
+}
+
+.rainbow-border {
+  border: 4px solid transparent;
+  border-image: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-accent), var(--color-primary)) 1;
+  }
